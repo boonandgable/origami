@@ -18,17 +18,18 @@
 
 =end
 
-require 'colorize'
+require 'rainbow/refinement'
+using Rainbow
 
 class String #:nodoc:
 
     def hexdump(bytesperline: 16, upcase: true, offsets: true, delta: 0)
         dump = ""
         counter = 0
-    
+
         while counter < self.length
             offset = sprintf("%010X", counter + delta)
-      
+
             linelen = [ self.length - counter, bytesperline ].min
             bytes = ""
             linelen.times do |i|
@@ -39,12 +40,12 @@ class String #:nodoc:
             end
 
             ascii = self[counter, linelen].ascii_print
-      
+
             if upcase
                 offset.upcase!
                 bytes.upcase!
             end
-      
+
             dump << "#{offset.yellow if offsets}  #{bytes.to_s.ljust(bytesperline * 3 - 1).bold}  #{ascii}\n"
 
             counter += bytesperline
@@ -52,7 +53,7 @@ class String #:nodoc:
 
         dump
     end
-  
+
     def ascii_print
         self.gsub(/[^[[:print:]]]/, ".")
     end

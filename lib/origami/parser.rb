@@ -18,7 +18,8 @@
 
 =end
 
-require 'colorize'
+require 'rainbow/refinement'
+using Rainbow
 require 'strscan'
 
 module Origami
@@ -232,7 +233,7 @@ module Origami
             return unless @options[:verbosity] >= level
 
             if @options[:colorize_log]
-                @logger.print "[#{prefix}] ".colorize(color)
+                @logger.print "[#{prefix}] "
                 @logger.puts message
             else
                 @logger.puts "[#{prefix}] #{message}"

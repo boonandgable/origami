@@ -37,7 +37,9 @@ require 'optparse'
 require 'yaml'
 require 'rexml/document'
 require 'digest/md5'
-require 'colorize'
+require 'fileutils'
+require 'rainbow/refinement'
+using Rainbow
 
 DEFAULT_CONFIG_FILE = "#{File.dirname(__FILE__)}/config/pdfcop.conf.yml"
 DEFAULT_POLICY = "standard"
@@ -119,7 +121,7 @@ else
 end
 
 def log(str, color = :default)
-    LOGGER.puts("[#{Time.now}]".cyan + " #{str.colorize(color)}")
+    LOGGER.puts("[#{Time.now}]".cyan + " #{str}")
 end
 
 def reject(cause)

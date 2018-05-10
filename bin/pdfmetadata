@@ -31,7 +31,9 @@ rescue LoadError
 end
 include Origami
 
-require 'colorize'
+require 'rainbow/refinement'
+using Rainbow
+
 require 'optparse'
 
 class OptParser

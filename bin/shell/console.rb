@@ -20,7 +20,8 @@
 
 require 'tempfile'
 require 'hexdump'
-require 'colorize'
+require 'rainbow/refinement'
+using Rainbow
 
 String.disable_colorization(false)
 
